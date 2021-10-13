@@ -68,6 +68,63 @@ class Homes extends StatelessWidget {
                     )
                   ]),
             ),
+            SizedBox(height: 10),
+            Container(
+                color: Colors.white,
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          child: Row(children: [
+                        Text('Top Stories'),
+                        const Spacer(),
+                        Image(
+                          image: AssetImage("assets/images/arrow_forward.png"),
+                          height: 40,
+                        )
+                      ]))
+                    ])),
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 3.4,
+              child: ListView.builder(
+                  physics: ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        width: MediaQuery.of(context).size.width / 2.3,
+                        margin: EdgeInsets.only(right: 12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(14),
+                          ),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/home_bg.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Container(
+                          width: double.maxFinite,
+                          alignment: Alignment.bottomLeft,
+                          // This aligns the child of the container
+                          child: Padding(
+                            padding: EdgeInsets.all(12),
+                            //some spacing to the child from bottom
+                            child: Text(
+                              '3 things you do at\nliving room',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                wordSpacing: 2,
+                              ),
+                            ),
+                          ),
+                        ));
+                  }),
+            ),
           ],
         )),
       ),
