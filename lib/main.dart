@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uicheck/home.dart';
+import 'package:uicheck/innov/homes.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         // home: MyHomePage(title: 'Flutter Demo Home Page'),
         debugShowCheckedModeBanner: false,
         initialRoute: 'home',
-        routes: {'home': (context) => Home()});
+        routes: {'home': (context) => Homes()});
   }
 }
 

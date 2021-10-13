@@ -1,9 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:uicheck/Indicator.dart';
 import 'package:uicheck/detail.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   static String routeHome = "/home";
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int currentIndex = 0;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +39,7 @@ class Home extends StatelessWidget {
               Container(
                 color: Colors.white,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -26,17 +48,17 @@ class Home extends StatelessWidget {
                       children: [
                         Image(
                           image: AssetImage("assets/images/logo.png"),
-                          height: 32,
+                          height: 38,
                         ),
                         const Spacer(),
                         Image(
                           image: AssetImage("assets/images/notification.png"),
-                          height: 24,
+                          height: 22,
                         ),
                         SizedBox(width: 15),
                         Image(
                           image: AssetImage("assets/images/cart.png"),
-                          height: 24,
+                          height: 22,
                         ),
                       ],
                     ),
@@ -54,6 +76,9 @@ class Home extends StatelessWidget {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'What are you looking for?',
+                          hintStyle: TextStyle(
+                            color: Color(0xFF92939E),
+                          ),
                           prefixIcon: Icon(Icons.search),
                         ),
                       ),
@@ -62,15 +87,16 @@ class Home extends StatelessWidget {
                     Text(
                       "Hi, Adrian",
                       style: TextStyle(
-                        fontSize: 28.0,
-                        fontFamily: 'Gilroy',
-                      ),
+                          fontSize: 28.0,
+                          fontFamily: 'Gilroy',
+                          fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(height: 4),
                     Text(
                       "Explore designs, book services for your home",
                       style: TextStyle(
-                          fontSize: 12.0,
-                          color: Color.fromARGB(255, 103, 103, 103)),
+                          fontSize: 14.0,
+                          color: Color(0xFF676777)),
                     ),
                   ],
                 ),
@@ -78,38 +104,40 @@ class Home extends StatelessWidget {
               SizedBox(height: 15),
               Container(
                 color: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: const EdgeInsets.only(left: 16, top: 24, bottom: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Top Stories',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: 'Gilroy',
+                    Container(
+                      padding: const EdgeInsets.only(right: 24),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Top Stories',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Gilroy',
+                                fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Detail()),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Detail()),
+                            ),
+                            child: Image(
+                              image:
+                                  AssetImage("assets/images/arrow_forward.png"),
+                              height: 18,
+                            ),
                           ),
-                          child: Image(
-                            image:
-                                AssetImage("assets/images/arrow_forward.png"),
-                            height: 24.0,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 20),
                     SizedBox(
-                      height: 250.0,
+                      height: 220,
                       child: ListView.builder(
                           physics: ClampingScrollPhysics(),
                           shrinkWrap: true,
@@ -117,8 +145,8 @@ class Home extends StatelessWidget {
                           itemCount: 5,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
-                              width: 160,
-                              margin: EdgeInsets.all(10),
+                              width: 170,
+                              margin: EdgeInsets.only(right: 12),
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
@@ -146,6 +174,164 @@ class Home extends StatelessWidget {
                             );
                           }),
                     ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 12),
+              Container(
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(children: [
+                      Container(
+                        height: 200,
+                        child: Stack(
+                          children: [
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: PageView.builder(
+                                        itemCount: 5,
+                                        controller: _pageController,
+                                        scrollDirection: Axis.horizontal,
+                                        onPageChanged: (value) {
+                                          setState(() {
+                                            currentIndex = value;
+                                          });
+                                        },
+                                        itemBuilder: (context, index) {
+                                          // contents of slider
+                                          return GestureDetector(
+                                            onTap: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Detail()),
+                                            ),
+                                            child: Image(
+                                                image: AssetImage(
+                                                    "assets/images/detail_top.png"),
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                fit: BoxFit.fill),
+                                          );
+                                        }),
+                                  ),
+                                ]),
+                            Positioned(
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Container(
+                                  margin: EdgeInsets.only(bottom: 8),
+                                  padding: EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                      color: Color(0XCC26273D)),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      ...List.generate(
+                                        5,
+                                        (index) {
+                                          return Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Indicator(
+                                                positionIndex: index,
+                                                currentIndex: currentIndex,
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]),
+                    SizedBox(height: 8),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 16),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                'How to Design a Home That’s Warm & Welcoming? ',
+                                style: TextStyle(
+                                    fontFamily: 'Gilroy',
+                                    fontSize: 16,
+                                    color: Color(0xFF26273D),
+                                    fontWeight: FontWeight.bold)),
+                            SizedBox(height: 12),
+                            Row(children: [
+                              Text(
+                                '\$9,400',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Image(
+                                height: 16,
+                                image: AssetImage("assets/images/info.png"),
+                              )
+                            ]),
+                            SizedBox(height: 16),
+                            Row(children: [
+                              Row(children: [
+                                Image(
+                                  height: 16,
+                                  image:
+                                      AssetImage("assets/images/thumb_up.png"),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '77 Likes',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0Xff676777),
+                                      ),
+                                    )),
+                              ]),
+                              SizedBox(width: 16),
+                              Row(children: [
+                                Image(
+                                  height: 16,
+                                  image: AssetImage("assets/images/share.png"),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '13 Shares',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0Xff676777),
+                                      ),
+                                    )),
+                              ]),
+                              const Spacer(),
+                              Image(
+                                image: AssetImage(
+                                    "assets/images/bookmark_border.png"),
+                                height: 18,
+                              ),
+                            ]),
+                          ]),
+                    )
                   ],
                 ),
               ),
