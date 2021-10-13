@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-import 'package:uicheck/Indicator.dart';
-import 'package:uicheck/detail.dart';
+import 'package:uicheck/neiltest/Indicator.dart';
+import 'package:uicheck/neiltest/detail.dart';
 
 class Home extends StatefulWidget {
   static String routeHome = "/home";
