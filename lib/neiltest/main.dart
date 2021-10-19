@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uicheck/neiltest/Sabt.dart';
 import 'package:uicheck/neiltest/home.dart';
 import 'package:uicheck/innov/homes.dart';
+import 'package:uicheck/neiltest/mainpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         // home: MyHomePage(title: 'Flutter Demo Home Page'),
         debugShowCheckedModeBanner: false,
         initialRoute: 'home',
-        routes: {'home': (context) => Homes()});
+        routes: {'home': (context) => HomePage()});
   }
 }
 
@@ -117,3 +119,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+

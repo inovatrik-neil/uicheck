@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:uicheck/neiltest/Indicator.dart';
+import 'package:uicheck/neiltest/common/headerMain.dart';
 import 'package:uicheck/neiltest/detail.dart';
 
 class Home extends StatefulWidget {
@@ -36,70 +37,12 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                color: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image(
-                          image: AssetImage("assets/images/logo.png"),
-                          height: 38,
-                        ),
-                        const Spacer(),
-                        Image(
-                          image: AssetImage("assets/images/notification.png"),
-                          height: 22,
-                        ),
-                        SizedBox(width: 15),
-                        Image(
-                          image: AssetImage("assets/images/cart.png"),
-                          height: 22,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      height: 45,
-                      width: double.maxFinite,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                        color: Color(0xffF4F4F5),
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'What are you looking for?',
-                          hintStyle: TextStyle(
-                            color: Color(0xFF92939E),
-                          ),
-                          prefixIcon: Icon(Icons.search),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      "Hi, Adrian",
-                      style: TextStyle(
-                          fontSize: 28.0,
-                          fontFamily: 'Gilroy',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      "Explore designs, book services for your home",
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          color: Color(0xFF676777)),
-                    ),
-                  ],
-                ),
+              HeaderMain(
+                imgLogo: "assets/images/logo.png",
+                imgNotify: "assets/images/notification.png",
+                imgCart: "assets/images/cart.png",
+                txtHeader: 'Hi, Adrian',
+                txtSubHeader: 'Explore designs, book services for your home',
               ), //container for the header
               SizedBox(height: 15),
               Container(
@@ -162,13 +105,31 @@ class _HomeState extends State<Home> {
                               ),
                               alignment: Alignment.bottomCenter,
                               // This aligns the child of the container
-                              child: Padding(
-                                padding: EdgeInsets.only(bottom: 10.0),
-                                //some spacing to the child from bottom
-                                child: Text(
-                                  '3 things you do at\nliving room',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: new BoxDecoration(
+                                    gradient: new LinearGradient(
+                                      end: const Alignment(0.0, -1),
+                                      begin: const Alignment(0.0, 0.6),
+                                      colors: <Color>[
+                                        Colors.black,
+                                        Colors.black12.withOpacity(0.0)
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(14),
+                                        bottomLeft: Radius.circular(14))),
+                                child: Padding(
+                                  padding: EdgeInsets.all(12),
+                                  //some spacing to the child from bottom
+                                  child: Text(
+                                    '3 things you do at\nliving room',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      wordSpacing: 1,
+                                    ),
+                                  ),
                                 ),
                               ),
                             );

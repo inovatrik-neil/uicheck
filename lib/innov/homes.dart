@@ -125,6 +125,51 @@ class Homes extends StatelessWidget {
                         ));
                   }),
             ),
+            SizedBox(height: 100),
+
+              Container(
+                height: 100,
+                width: 200,
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  color: Colors.red,
+                ),
+                child: Container(
+                  height: 30,
+                  margin: EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF000000),
+                        Color(0xFF000000),
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xFF000000),
+                        spreadRadius: 10,
+                        blurRadius: 10,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child:  Container(
+                      height: 50,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        color: Colors.green,
+                      ),),
+              ),
+
+            )
           ],
         )),
       ),
