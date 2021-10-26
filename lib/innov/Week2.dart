@@ -149,6 +149,31 @@ class _Week2State extends State<Week2> {
           ),
         ),
 
+        SizedBox(height: 30,),
+        Container(
+          height: 100,
+          width: 200,
+          color: Colors.yellow,
+          child: Column(
+            children:[
+              FloatingActionButton.extended(
+                foregroundColor: Colors.red,
+                backgroundColor: Colors.blue,
+                elevation: 20,
+                onPressed: () {
+                  // Add your onPressed code here!
+                },
+                label: Text('Send',
+                  style: TextStyle(color: Colors.white) ,),
+                icon: const Icon(Icons.navigation),
+
+              ),
+
+            ]
+          )
+        ),
+
+        SizedBox(height: 30,)
 
 
 

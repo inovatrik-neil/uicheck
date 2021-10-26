@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uicheck/innov/Statecheck.dart';
+import 'package:uicheck/innov/Week2.dart';
+import 'package:uicheck/innov/Week3.dart';
 import 'package:uicheck/neiltest/Sabt.dart';
 import 'package:uicheck/neiltest/home.dart';
 import 'package:uicheck/innov/homes.dart';
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         // home: MyHomePage(title: 'Flutter Demo Home Page'),
         debugShowCheckedModeBanner: false,
         initialRoute: 'home',
-        routes: {'home': (context) => HomePage()});
+        routes: {'home': (context) => Week3()});
   }
 }
 
