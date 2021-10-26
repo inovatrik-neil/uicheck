@@ -24,6 +24,7 @@ class _ChoiceChipListWidgetState2 extends State<ChoiceChipListWidget2> {
       choices.add(_buildChoiceChip(item));
     });
     return choices;
+
   }
 
   Widget buildChoiceChips(){
